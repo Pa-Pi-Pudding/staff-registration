@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="ja" >
+<head>
+
+
+<script type="text/javascript">
+
+
+function disp(){
+
+	// 「OK」時の処理開始 ＋ 確認ダイアログの表示
+	if(window.confirm('登録しますか')){
+
+		location.href = "../main-menu/executive.html"; // example_confirm.html へジャンプ
+
+	}
+	// 「OK」時の処理終了
+
+	// 「キャンセル」時の処理開始
+	else{
+
+		window.alert('キャンセルされました'); // 警告ダイアログを表示
+
+	}
+	// 「キャンセル」時の処理終了
+
+}
+
+</script>
+
+
+</head>
+    <body>
+    <meta charset="UTF-8">
+    <title>登録画面</title>
+     <form action="/comike/comiket-entry/complete" method="POST">{% csrf_token %}
+
+    <table border="1" align="center">
+        <tr>
+            <td>氏名</td>
+            <td>{{ data.staff_name }}{{ data.staff_name.errors }}</td>
+
+        </tr>
+          <tr>
+            <td>カナ</td>
+            <td>{{ data.staff_name_kana }}{{ data.staff_name_kana.errors}}</td>
+        </tr>
+        <tr>
+            <td>性別</td>
+            <td>
+            {% if data.gender == 1 %}
+            男
+            {% else %}
+            女
+            {% endif %}
+
+                {{ data.gender.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>生年月日</td>
+            <td>{{ data.birth_day|date:"Y/m/d" }}{{ data.birth_day.errors }}</td>
+        </tr>
+         <tr>
+            <td>メールアドレス</td>
+            <td>{{ data.mail_address }}{{ data.mail_address.errors }}</td>
+        </tr>
+        <tr>
+            <td>メールアドレス(確認)</td>
+            <td>
+                {{ data.mail_address }}{{ data.mail_address.errors}}
+            </td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td>
+                {{ data.phone_number }}{{ data.phone_number.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td>
+                {{ data.post_code }}{{ data.post_code.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>
+                {{ data.address }}{{ data.address.errors }}
+             </td>
+        </tr>
+        <tr>
+            <td>緊急連絡先（電話番号）</td>
+            <td>
+                {{ data.e_phone_number }}{{ data.e_phone_number.errors }}
+            </td>
+           </tr>
+        <tr>
+            <td>緊急連絡先（氏名）</td>
+            <td>
+                {{ data.e_name }}{{ data.e_name.errors }}
+            </td>
+        </tr>
+           <tr>
+            <td>緊急連絡先（続柄）</td>
+            <td>
+                {{ data.e_relationship }}{{ data.e_relationship.errors }}
+            </td>
+        </tr>
+          <tr>
+        <td>参加日</td>
+        <td>
+            {% if data.join_day_0 == 1 %}
+            設営日
+            {% else %}
+            &nbsp;
+            {% endif %}
+
+            {% if data.join_day_1 == 1 %}
+            1日目
+            {% else %}
+            &nbsp;
+            {% endif %}
+
+            {% if data.join_day_2 == 1 %}
+            2日目
+            {% else %}
+            &nbsp;
+            {% endif %}
+
+            {% if data.join_day_3 == 1 %}
+            3日目
+            {% else %}
+            &nbsp;
+            {% endif %}
+
+            {{ data.join_day.errors }}
+        </td>
+        <tr>
+        <td>配属先（第1希望）</td>
+        <td>
+
+            {% if data.assignment_1 == '0' %}
+            東1ホール
+            {% endif %}
+            {% if data.assignment_1 == '1' %}
+            東2ホール
+            {% endif %}
+            {% if data.assignment_1 == '2' %}
+            東3ホール
+            {% endif %}
+            {% if data.assignment_1 == '3' %}
+            東4ホール
+            {% endif %}
+            {% if data.assignment_1 == '4' %}
+            東5ホール
+            {% endif %}
+            {% if data.assignment_1 == '5' %}
+            東6ホール
+            {% endif %}
+            {% if data.assignment_1 == '6' %}
+            東7ホール
+            {% endif %}
+            {% if data.assignment_1 == '3' %}
+            東8ホール
+            {% endif %}
+
+          {{ data.assignment_1.errors }}
+        </td>
+         </tr>
+        <tr>
+            <td>配属先（第2希望）</td>
+        <td>
+
+            {% if data.assignment_1 == '0' %}
+            東1ホール
+            {% endif %}
+            {% if data.assignment_2 == '1' %}
+            東2ホール
+            {% endif %}
+            {% if data.assignment_2 == '2' %}
+            東3ホール
+            {% endif %}
+            {% if data.assignment_2 == '3' %}
+            東4ホール
+            {% endif %}
+            {% if data.assignment_2 == '4' %}
+            東5ホール
+            {% endif %}
+            {% if data.assignment_2 == '5' %}
+            東6ホール
+            {% endif %}
+            {% if data.assignment_2 == '6' %}
+            東7ホール
+            {% endif %}
+            {% if data.assignment_2 == '3' %}
+            東8ホール
+            {% else %}
+            &nbsp;
+            {% endif %}
+          {{ data.assignment_2.errors }}
+        </td>
+        </tr>
+        <tr>
+            <td>一緒に働きたい人</td>
+            <td>
+                {{ data.partner }}
+                {{ data.partner.errors}}
+            </td>
+        </tr>
+        <tr>
+            <td>駐車場</td>
+            <td>
+            {% if data.parking == '1' %}
+            使用する
+            {% else %}
+            使用しない
+            {% endif %}
+            {{ data.parking.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>ホテル使用</td>
+            <td>
+            {% if data.hotel == '1' %}
+            使用する
+            {% else %}
+            使用しない
+            {% endif %}
+                {{ data.hotel.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>サイト使用時のパスワード</td>
+            <td>{{ data.password }} {{ data.password.errors }}</td>
+        </tr>
+        <tr>
+            <td>パスワード（確認）</td>
+            <td>{{ data.password }} {{ data.password.errors }}</td>
+        </tr>
+        <tr>
+            <td>備考</td>
+            <td>{{ data.memo }} {{ data.memo.errors }}</td>
+        </tr>
+    </table>
+           <input type="submit" value="登録" onClick="disp()"  style="position: absolute; left: 50%;">
+         <input type="button" onclick="location.href='/comike/comiket-entry/entry.html'" value="前のページに戻る" >
+    </form>
+
+</body>
+</html>

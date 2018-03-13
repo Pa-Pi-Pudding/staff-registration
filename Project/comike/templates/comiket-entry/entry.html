@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja" >
+<head>
+
+</head>
+
+    <body>
+    <meta charset="UTF-8">
+    <title>登録画面</title>
+     <form action="/comike/comiket-entry/confirmation" method="POST">{% csrf_token %}
+    <table border="1" align="center">
+        <tr>
+            <td>氏名</td>
+            <td>{{ form.staff_name }}{{ form.staff_name.errors }}</td>
+
+        </tr>
+          <tr>
+            <td>カナ</td>
+
+            <td>{{ form.staff_name_kana }}{{ form.staff_name_kana.errors}}</td>
+        </tr>
+        <tr>
+            <td>性別</td>
+            <td>
+                {{ form.gender.0 }}
+                {{ form.gender.1 }}
+                {{ form.gender.errors }}
+
+            </td>
+        </tr>
+        <tr>
+            <td>生年月日</td>
+
+            <td>{{ form.birth_day }}{{ form.birth_day.errors }}</td>
+        </tr>
+         <tr>
+            <td>メールアドレス</td>
+            <td>
+            {{ form.mail_address }}{{ form.mail_address.errors }}</td>
+        </tr>
+        <tr>
+        <td>メールアドレス(確認)</td>
+        <td>
+        {{ form.mail_address }}{{ form.mail_address.errors}}
+
+        </td>
+        </tr>
+        <tr>
+            <td>電話番号</td>
+            <td>
+                {{ form.phone_number }}{{ form.phone_number.errors }}
+
+            </td>
+        </tr>
+        <tr>
+            <td>郵便番号</td>
+            <td>
+                {{ form.post_code }}{{ form.post_code.errors }}
+
+            </td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>
+                {{ form.address }}{{ form.address.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>緊急連絡先（電話番号）</td>
+            <td>
+                {{ form.e_phone_number }}{{ form.e_phone_number.errors }}
+            </td>
+           </tr>
+        <tr>
+            <td>緊急連絡先（氏名）</td>
+            <td>
+                {{ form.e_name }}{{ form.e_name.errors }}
+            </td>
+        </tr>
+           <tr>
+            <td>緊急連絡先（続柄）</td>
+            <td>
+                {{ form.e_relationship }}{{ form.e_relationship.errors }}
+            </td>
+        </tr>
+          <tr>
+        <td>参加日</td>
+        <td>
+
+            {{ form.join_day_0 }}設営日
+            {{ form.join_day_1 }}1日目
+            {{ form.join_day_2 }}2日目
+            {{ form.join_day_3 }}3日目
+            {{ form.join_day.errors }}
+        </td>
+        <tr>
+        <td>配属先（第1希望）</td>
+        <td>
+          {{ form.assignment_1.0 }}
+          {{ form.assignment_1.1 }}
+          {{ form.assignment_1.2 }}
+          {{ form.assignment_1.3 }}
+          {{ form.assignment_1.4 }}
+          {{ form.assignment_1.5 }}
+          {{ form.assignment_1.6 }}
+          {{ form.assignment_1.7 }}
+          {{ form.assignment_1.errors }}
+        </td>
+         </tr>
+        <tr>
+            <td>配属先（第2希望）</td>
+        <td>
+          {{ form.assignment_2.0 }}
+          {{ form.assignment_2.1 }}
+          {{ form.assignment_2.2 }}
+          {{ form.assignment_2.3 }}
+          {{ form.assignment_2.4 }}
+          {{ form.assignment_2.5 }}
+          {{ form.assignment_2.6 }}
+          {{ form.assignment_2.7 }}
+          {{ form.assignment_2.errors }}
+        </td>
+        </tr>
+        <tr>
+            <td>一緒に働きたい人</td>
+            <td>
+                {{ form.partner }}
+                {{ form.partner.errors}}
+            </td>
+        </tr>
+        <tr>
+            <td>駐車場</td>
+            <td>
+                {{ form.parking.0 }}
+                {{ form.parking.1 }}
+                {{ form.parking.errors }}</td>
+        </tr>
+        <tr>
+            <td>ホテル使用</td>
+            <td>
+                {{ form.hotel.0 }}
+                {{ form.hotel.1 }}
+                {{ form.hotel.errors }}
+            </td>
+        </tr>
+        <tr>
+            <td>サイト使用時のパスワード</td>
+            <td>{{ form.password }} {{ form.password.errors }}</td>
+        </tr>
+        <tr>
+            <td>パスワード（確認）</td>
+            <td>{{ form.password }} {{ form.password.errors }}</td>
+        </tr>
+        <tr>
+            <td>備考</td>
+            <td>{{ form.memo }} {{ form.memo.errors }}</td>
+        </tr>
+
+
+    </table>
+           <input type="submit" value="入力内容を確認する" style="position: absolute; left: 50%;" >
+     </form>
+
+</body>
+</html>

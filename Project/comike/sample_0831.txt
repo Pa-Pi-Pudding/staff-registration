@@ -1,0 +1,150 @@
+
+
+def get_hoge(request):
+	
+	ctx = {}
+	
+	# 一覧処理
+	if request.method == "GET":
+		form = GetForm(request.GET or None)
+		if form.is_valid():
+			user = User.objects.filter(is_valid=True, id__in=form.cleaned_data.getlist("user_id"))
+		else:
+			user = User.objects.filter(is_valid=True)
+
+	ctx = {
+		"aaa": aaa,
+		"bbb": bbb,
+		"user": user,
+	}
+
+	return render("templete_get.html", data=ctx)
+
+
+def post_hoge(request):
+
+	ctx = {}
+
+	# 登録処理
+	elif request.method == "POST:
+
+		print(request.POST)  
+			# button_1を押した時 ->  {"hoge_id": 345, "name": "hogehoge", "button_1": "1番を登録" }
+			# button_2を押した時 ->  {"weather_id": 123, "memo": "めも", "button_2": "2番を登録" }
+
+		if "button_1" in request.POST.keys():
+			form = HogeForm(request.POST or None)
+			if form.is_valid():
+				cleaned_data = form.cleaned_data
+				data = User.objects.filter(id=cleaned_data.get("hoge_id")
+				data.kana_name = cleaned_data.get("kana_name")
+				data.save()
+				flag = "button1"
+
+		elif "button_2" in request.POST.keys():
+			form = FugaForm(request.POST or None)
+			if form.is_valid():
+				cleaned_data = form.cleaned_data
+				data = Weather.objects.filter(id=cleaned_data.get("weather_id")
+				data.name = cleaned_data.get("memo")
+				data.save()
+				flag = "button2"
+
+	ctx = {
+		"flag": flag,
+		"aaa": aaa,
+		"bbb": bbb,
+		"data": data,
+	}
+
+	return render("templete_post.html", data=ctx)
+
+
+for a in dict.keys():
+	a = key1
+
+for a in dict.values():
+	a = value1
+
+for k, v in dict.items():
+	k = key1
+	v = value1
+
+
+class HogeForm(forms.Form):
+	hoge_id = IntegerField()
+	name = CharField(max_length=20)
+	kana_name = CharField(max_length=20)
+
+
+class FugaForm(forms.Form):
+	weather_id = IntegerField()
+	memo = CharField(max_length=255)
+
+
+class GetForm(forms.Form):
+	user_id = IntegerField()
+
+
+
+
+url("/user/entry", views.post_hoge),
+url("/user/list", views.get_hoge),
+
+
+
+templete_get.html
+
+<html>
+<body>
+
+<form action="/user/entry" method="POST">
+	<input type="text" name="kana_name">
+	<input type="submit" name="buttun_1" value="1番を登録">
+</form>
+
+<form action="/user/entry" method="POST">
+	<input type="text" name="name">
+	<input type="submit" name="buttun_2" value="2番を登録">
+</form>
+
+<table>
+{% for u in user %}
+	<tr>
+		<td>名前</td><td>{{ u.name }}		
+	</tr>
+	<tr>
+		<td>名前（カナ）</td><td>{{ u.kana_name }}		
+	</tr>
+{% endfor %}
+<table>
+
+</body>
+</html>
+
+
+
+
+templete_post.html
+<html>
+<body>
+
+	{% if flag == "button1" %}
+	<span>
+	{{ data.memo }}
+	</span>
+	{% endif %}
+
+	{% if flag == "button2" %}
+	<table>
+		<tr>
+			<td>名前</td><td>{{ data.name }}		
+		</tr>
+		<tr>
+			<td>名前（カナ）</td><td>{{ data.kana_name }}		
+		</tr>
+	</table>
+	{% endif %}
+
+</body>
+</html>

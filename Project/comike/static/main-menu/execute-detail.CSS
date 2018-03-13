@@ -1,0 +1,37 @@
+.header2{
+text-align: center;
+padding: 1px 1px 1px 1px;
+border:5px solid black;
+}
+
+.weather-box{
+float: left;
+width:200px; height:100px;
+margin: 100px 1px 10px 150px;
+padding:10px 50px 50px 10px;
+border:1px solid black;
+background-color:lightgray;
+}
+
+.shutter-box{
+float: right;
+width:200px; height:100px;
+margin: 100px 100px 100px 10px;
+padding:20px 50px 50px 10px;
+border:1px solid black;
+}
+
+.info-box{
+height:150px;
+overflow: auto;
+margin: 300px 100px 100px 10px;
+padding:20px 50px 50px 10px;
+border:1px solid black;
+}
+
+.hole-box{
+height:200px;
+margin: 100px 100px 100px 10px;
+padding:20px 50px 50px 10px;
+border:1px solid black;
+}

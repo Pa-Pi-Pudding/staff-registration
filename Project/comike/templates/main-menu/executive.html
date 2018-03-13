@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>統括部ページ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main-menu/execute-detail.css' %}" />
+
+</head>
+<div class="header2"><h2>サイト名</h2></div>
+<body>
+<div class="weather-box" align="left">
+今日は、お日柄もよく
+</div>
+<div class="shutter-box" align="light">
+    シャッター情報<br>
+     <input type="submit" value="東1ホール" >
+     <input type="submit" value="東2ホール" >
+     <input type="submit" value="東3ホール" >
+     <input type="submit" value="東4ホール" >
+     <input type="submit" value="東5ホール" >
+     <input type="submit" value="東6ホール" >
+     <input type="submit" value="東7ホール" >
+     <input type="submit" value="東8ホール" >
+</div>
+
+<div class="info-box">
+    <p style="font-size: 10pt" align="left">お知らせ</p>
+    <form method="POST" action="">
+    <table>
+         {% for information in data %}
+        <tr>
+            <td>{{ information.updated_date|date:"Y/m/d" }}</td>
+            <td>{{ information.get_organization_display }} </td>
+        </tr>
+        <tr>
+            <!--get_model_displayでchoicesの値を取り出せる-->
+            <td>{{ information.title }}</td>
+            <td>{{ information.content}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="button" onclick="location.href='/comike/main-menu/information-setting.html'" value="編集" >
+    </form>
+</div>
+
+<div class="hole-box">
+    ホールジャンプ<br>
+     <input type="submit" value="東1ホール" >
+     <input type="submit" value="東2ホール" >
+     <input type="submit" value="東3ホール" >
+     <input type="submit" value="東4ホール" >
+     <input type="submit" value="東5ホール" >
+     <input type="submit" value="東6ホール" >
+     <input type="submit" value="東7ホール" >
+     <input type="submit" value="東8ホール" >
+</div>
+
+</body>
+</html>

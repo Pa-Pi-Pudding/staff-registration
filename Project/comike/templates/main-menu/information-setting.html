@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>連絡編修ページ</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'information-setting/infoset.css' %}" />
+
+    <script type="text/javascript">
+
+
+function disp(){
+
+	// 「OK」時の処理開始 ＋ 確認ダイアログの表示
+	if(window.confirm('登録しますか')){
+
+		location.href = "../main-menu/executive.html"; // example_confirm.html へジャンプ
+
+	}
+	// 「OK」時の処理終了
+
+	// 「キャンセル」時の処理開始
+	else{
+
+		window.alert('キャンセルされました'); // 警告ダイアログを表示
+
+	}
+	// 「キャンセル」時の処理終了
+
+}
+
+</script>
+
+</head>
+<body>
+    <h2>各部署から連絡編集ページ</h2>
+    <input type="button" onclick="location.href='/comike/main-menu/executive.html'" value="前のページに戻る" >
+    <form action="/comike/main-menu/information-setting" method="POST">{% csrf_token %}
+    <p>※編集したいものをクリックしてください</p><br>
+
+    <p>一覧</p>
+    <div class="list">
+    <table>
+         {% for information in data %}
+        <tr>
+            <td>{{ information.updated_date|date:"Y/m/d" }}</td>
+            <td>{{ information.get_organization_display }} </td>
+        </tr>
+        <tr>
+            <!--get_model_displayでchoicesの値を取り出せる-->
+            <td>{{ information.title }}</td>
+            <td>{{ information.content}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    </div>
+    <p>所属を選択してください</p>
+     {{ info.organization.0 }}
+     {{ info.organization.1 }}
+     {{ info.organization.2 }}
+     {{ info.organization.3 }}
+     {{ info.organization.errors }}
+
+    <h2>タイトル</h2>
+    <div class="title">
+     <input type="text" name="title" maxlength="255" required id="id_title" size="60" />  {{ info.title.errors }}
+    </div>
+    <h2>内容</h2>
+    <div class="content">
+
+    <textarea name="content" id="id_content" cols="50" rows="5"> {{ info.content.errors }}</textarea>
+    </div>
+    <input type="submit" value="編集" name="information_submit" onclick="disp()">
+    </form>
+
+    <h3>運送業者情報</h3>
+    <form action="/comike/main-menu/information-setting" method="POST">{% csrf_token %}
+    <div class="carrier">
+    <p>現在は</p>
+    {{ weather.carrier_shift }} {{ weather.carrier_shift.errors }}
+    <p>シフトです</p>
+    </div>
+    <input type="submit" value="編集" name="weather_submit" onclick="disp()">
+    </form>
+
+</body>
+</html>
